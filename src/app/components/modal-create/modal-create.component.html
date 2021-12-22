@@ -1,0 +1,42 @@
+<!-- Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createModalLabel">
+          Datos de la operacion
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" [formGroup]="movimientoForm">
+          <div class="col-md-6">
+            <label for="cantidad" class="form-label">Monto:</label>
+            <input type="number" class="form-control" id="cantidad" formControlName="cantidad" />
+            <small *ngIf="campoNoValido('cantidad')" class="text-danger">El campo es obligatorio</small>
+          </div>
+          <div class="col-md-6">
+            <label for="tipo" class="form-label">Tipo:</label>
+            <select id="tipo" class="form-select" formControlName="tipo">
+              <option value="">Seleccione...</option>
+              <option value="INGRESO">Ingreso</option>
+              <option value="RETIRO">Retiro</option>
+            </select>
+            <small *ngIf="campoNoValido('tipo')" class="text-danger">El campo es obligatorio</small>
+          </div>
+          <div class="col-12">
+            <label for="concepto" class="form-label">Concepto:</label>
+            <textarea class="form-control" id="concepto" rows="3" formControlName="concepto"></textarea>
+            <small *ngIf="campoNoValido('concepto')" class="text-danger">El campo es obligatorio</small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-morado" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="guardarMovimiento()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
