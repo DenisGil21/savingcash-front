@@ -1,1 +1,64 @@
-<p>registro works!</p>
+<div style="height: 40vw; max-height: 100vh; min-height: 400px">
+    <div class="d-flex align-items-center justify-content-center" style="height: 100%;">
+        <div class="card-login">
+            <div>
+                <h2 class="text-center text-white mb-4">SavingCash</h2>
+            </div>
+            <div class="row">
+                <div class="col-16">
+                    <form (ngSubmit)="registrarse()" [formGroup]="registroForm">
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text" id="nombre"><i class="fas fa-id-card"></i></span>
+                                <input type="text" class="form-control" placeholder="Nombre completo"
+                                    aria-label="Nombre" aria-describedby="nombre" formControlName="nombre">
+                            </div>
+                            <small class="text-white" *ngIf="campoNoValido('nombre')">El campo es obligatorio</small>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text" id="username"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                                    aria-describedby="username" formControlName="username">
+                            </div>
+                            <small class="text-white" *ngIf="campoNoValido('username')">El campo es obligatorio</small>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text" id="password"><i class="fas fa-key"></i></span>
+                                <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                                    aria-describedby="password" formControlName="password">
+                            </div>
+                            <small class="text-white" *ngIf="campoNoValido('password')">El campo es obligatorio y debe
+                                ser mayor a 6 digitos</small>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text" id="password2"><i class="fas fa-key"></i></span>
+                                <input type="password" class="form-control" placeholder="Confirmar password"
+                                    aria-label="Password2" aria-describedby="password2" formControlName="password2">
+                            </div>
+                            <small class="text-white" *ngIf="campoNoValido('password2')">Los password no
+                                coinciden</small>
+                        </div>
+                        <button type="submit" class="btn btn-azul w-100">Registrarse</button>
+                        <div class="mt-3 text-center">
+                            <a routerLink="/auth/login" class="text-white">Iniciar sesion</a>
+                        </div>
+                    </form>
+                    <div class="row mt-2" *ngIf="cargando">
+                        <div class="col-12">
+                            <div class=" alert alert-info text-center" role="alert">
+                                <h4 class="alert-heading">Iniciando sesión</h4>
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <p class="mb-0">Por favor espere</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+.card-login{
+    box-shadow: 0 20px 30px rgba(0,0,0,0.25), 0 20px 20px rgba(0,0,0,0.22);
+    padding: 40px 35px 45px 35px;
+    background-color: #6666FF;
+    border-radius: 20px;
+}
+
+.btn-azul{
+    background-color: #218EE7;
+    color: white;
+}
