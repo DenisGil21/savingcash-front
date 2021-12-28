@@ -15,8 +15,9 @@ export class DashboardComponent implements OnInit {
   public ingresoMensual: number = 0;
   public gastoMensual: number = 0;
   public saldoTotal: number = 0;
-  public parametros:MovimientoParameters = {anio:'', mes:''};
+  public parametros: MovimientoParameters = { anio: '', mes: '', desde: 0 };
   @ViewChild('asSelectAnio') selectAnio!: ElementRef;
+  public totalMovimientos: number = 0;
 
 
   constructor(private movimientoService: MovimientoService) { }
@@ -28,12 +29,15 @@ export class DashboardComponent implements OnInit {
 
   obtenerMovimientos(): void {
     this.movimientoService.getMovimientos(this.parametros)
-      .subscribe(resp => {        
+      .subscribe(resp => {
         this.movimientos = resp.movimientos;
-        this.ingresoMensual = resp.ingresoMensual;
-        this.gastoMensual = resp.gastoMensual;
-        if (!this.parametros?.mes && !this.parametros?.anio) {
+        this.totalMovimientos = resp.total;
+        if (!this.parametros?.mes && !this.parametros?.anio && !this.parametros.desde) {
           this.saldoTotal = resp.saldoTotal;
+        }
+        if (!this.parametros.desde) {
+          this.ingresoMensual = resp.ingresoMensual;
+          this.gastoMensual = resp.gastoMensual;
         }
       });
   }
@@ -41,8 +45,8 @@ export class DashboardComponent implements OnInit {
 
   cargarSelectAnio() {
     this.movimientoService.getMovimientosAnios()
-      .subscribe(anios => {        
-        let options = '<option value="">Filtrar por anio</option>';
+      .subscribe(anios => {
+        let options = '<option value="">Filtrar por año</option>';
         for (const anio of anios) {
           options += `
             <option value="${anio._id}">${anio._id}</option>
@@ -89,18 +93,29 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  movimientosPorMes(event: Event) {
+  movimientosPorMes(event: Event): void {
     const selectElement = (event.target as HTMLSelectElement);
     const mes = selectElement.value;
     this.parametros.mes = mes;
     this.obtenerMovimientos()
   }
 
-   movimientosPorAnio(event: Event) {
+  movimientosPorAnio(event: Event): void {
     const selectElement = (event.target as HTMLSelectElement);
-    const anio = selectElement.value;  
+    const anio = selectElement.value;
     this.parametros.anio = anio;
     this.obtenerMovimientos()
+  }
+
+  cambiarPagina(valor: number): void {
+    this.parametros.desde += valor;
+
+    if (this.parametros.desde < 0) {
+      this.parametros.desde = 0
+    }else if (this.parametros.desde > this.totalMovimientos){
+      this.parametros.desde -= valor;
+    }
+    this.obtenerMovimientos();
   }
 
 }

@@ -35,17 +35,13 @@
           <div class="mb-3">
             <div class="row">
               <div class="col-lg-3 col-md-6 col-sm-6">
-                <select (change)="movimientosPorAnio($event)"
-                  class="form-select btn-menu text-white"
-                  aria-label="Default select example" #asSelectAnio
-                >
+                <select (change)="movimientosPorAnio($event)" class="form-select btn-menu text-white"
+                  aria-label="Default select example" #asSelectAnio>
                 </select>
               </div>
               <div class="col-lg-3 col-md-6 col-sm-6">
-                <select (change)="movimientosPorMes($event)"
-                  class="form-select btn-menu text-white"
-                  aria-label="Default select example"
-                >
+                <select (change)="movimientosPorMes($event)" class="form-select btn-menu text-white"
+                  aria-label="Default select example">
                   <option selected>Filtrar por mes</option>
                   <option value="1">Enero</option>
                   <option value="2">Febrero</option>
@@ -62,12 +58,8 @@
                 </select>
               </div>
               <div class="col-lg-6 col-md-12 col-sm-12 mt-2 mt-lg-0">
-                <button
-                  type="button"
-                  class="btn btn-primary btn-menu w-100"
-                  data-bs-toggle="modal"
-                  data-bs-target="#createModal"
-                >
+                <button type="button" class="btn btn-primary btn-menu w-100" data-bs-toggle="modal"
+                  data-bs-target="#createModal">
                   <i class="fas fa-plus-square"></i> Nuevo movimiento
                 </button>
               </div>
@@ -88,13 +80,14 @@
                   <th>${{ movimiento.cantidad }}</th>
                   <th class="text-lowercase">{{ movimiento.tipo }}</th>
                   <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#detailModal" (click)="cargarDataModal(movimiento)">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal"
+                      (click)="cargarDataModal(movimiento)">
                       <i class="fas fa-info-circle"></i>
                     </button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-primary btn-morado" (click)="eliminarMovimiento(movimiento._id)">
+                    <button type="button" class="btn btn-primary btn-morado"
+                      (click)="eliminarMovimiento(movimiento._id)">
                       <i class="fas fa-trash-alt"></i>
                     </button>
                   </td>
@@ -104,16 +97,12 @@
           </div>
           <nav aria-label="...">
             <ul class="pagination">
-              <li class="page-item disabled">
-                <a class="page-link">Previous</a>
+              <li class="page-item" style="cursor: pointer;" [ngClass]="{'disabled': (parametros.desde === 0)}">
+                <a class="page-link" (click)="cambiarPagina(-5)">Anterior</a>
               </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+              <li class="page-item" style="cursor: pointer;"
+                [ngClass]="{'disabled': (totalMovimientos-parametros.desde <= 5)}">
+                <a class="page-link" (click)="cambiarPagina(5)">Siguiente</a>
               </li>
             </ul>
           </nav>

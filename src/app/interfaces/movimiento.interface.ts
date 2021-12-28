@@ -29,4 +29,5 @@ export interface MovimientosAnios {
 export interface MovimientoParameters{
     anio?: string;
     mes?: string;
+    desde: number;
 }

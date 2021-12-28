@@ -16,9 +16,8 @@ export class MovimientoService {
 
   getMovimientos(parametros?: MovimientoParameters): Observable<Movimiento> {
     let params = new HttpParams();
-    console.log(parametros);
     
-
+    params = params.set('desde', String(parametros?.desde));
     if (parametros?.mes) {
       params = params.set('mes', parametros.mes);
     }
