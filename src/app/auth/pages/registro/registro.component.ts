@@ -48,6 +48,7 @@ export class RegistroComponent implements OnInit {
       this.router.navigateByUrl('dashboard');
     }, (err) => {
       console.log(err);
+      this.cargando = false;
       Swal.fire('Error', err.error, 'error');
       
     });

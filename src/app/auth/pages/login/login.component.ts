@@ -34,9 +34,11 @@ export class LoginComponent implements OnInit {
     this.cargando = true;
     this.usuarioService.login(this.loginForm.value)
     .subscribe(resp => {
+      this.cargando = false;
       console.log(resp);
       this.router.navigateByUrl('dashboard')
     },(err) => {
+      this.cargando = false;
       console.log(err);
       Swal.fire('Error', err.error.msj, 'error');
     });

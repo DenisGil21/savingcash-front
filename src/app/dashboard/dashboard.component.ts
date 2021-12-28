@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MovimientoService } from '../services/movimiento.service';
-import { MovimientoElement } from '../interfaces/movimiento.interface';
+import { MovimientoElement, MovimientoParameters } from '../interfaces/movimiento.interface';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,22 +12,55 @@ export class DashboardComponent implements OnInit {
 
   public movimientos: MovimientoElement[] = [];
   public movimiento!: MovimientoElement;
+  public ingresoMensual: number = 0;
+  public gastoMensual: number = 0;
+  public saldoTotal: number = 0;
+  public parametros:MovimientoParameters = {anio:'', mes:''};
+  @ViewChild('asSelectAnio') selectAnio!: ElementRef;
+
 
   constructor(private movimientoService: MovimientoService) { }
 
   ngOnInit(): void {
     this.obtenerMovimientos();
+    this.cargarSelectAnio();
   }
 
   obtenerMovimientos(): void {
-    this.movimientoService.getMovimientos()
-      .subscribe(resp => {
+    this.movimientoService.getMovimientos(this.parametros)
+      .subscribe(resp => {        
         this.movimientos = resp.movimientos;
+        this.ingresoMensual = resp.ingresoMensual;
+        this.gastoMensual = resp.gastoMensual;
+        if (!this.parametros?.mes && !this.parametros?.anio) {
+          this.saldoTotal = resp.saldoTotal;
+        }
       });
+  }
+
+
+  cargarSelectAnio() {
+    this.movimientoService.getMovimientosAnios()
+      .subscribe(anios => {        
+        let options = '<option value="">Filtrar por anio</option>';
+        for (const anio of anios) {
+          options += `
+            <option value="${anio._id}">${anio._id}</option>
+          `
+        }
+        (this.selectAnio.nativeElement as HTMLSelectElement).innerHTML = options;
+      });
+
   }
 
   cargarDataModal(movimiento: MovimientoElement): void {
     this.movimiento = movimiento;
+  }
+
+  refreshMovimientos(event: boolean) {
+    if (event) {
+      this.obtenerMovimientos();
+    }
   }
 
 
@@ -54,6 +87,20 @@ export class DashboardComponent implements OnInit {
           });
       }
     });
+  }
+
+  movimientosPorMes(event: Event) {
+    const selectElement = (event.target as HTMLSelectElement);
+    const mes = selectElement.value;
+    this.parametros.mes = mes;
+    this.obtenerMovimientos()
+  }
+
+   movimientosPorAnio(event: Event) {
+    const selectElement = (event.target as HTMLSelectElement);
+    const anio = selectElement.value;  
+    this.parametros.anio = anio;
+    this.obtenerMovimientos()
   }
 
 }
