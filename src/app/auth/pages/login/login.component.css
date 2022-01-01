@@ -9,3 +9,9 @@
     background-color: #218EE7;
     color: white;
 }
+
+.container{
+    height: 40vw; 
+    max-height: 100vh; 
+    min-height: 500px
+}

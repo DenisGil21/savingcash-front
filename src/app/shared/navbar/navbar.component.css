@@ -1,0 +1,21 @@
+.navbar-purple{
+    background-color: #7414F5 !important;
+}
+.navbar-purple, a{
+    color: white;
+}
+.offcanvas{
+    background-color: #7414F5;
+}
+
+.offcanvas-end {
+    width: 300px;
+}
+
+.offcanvas-body{
+    font-size: 19px;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: #000000;
+}

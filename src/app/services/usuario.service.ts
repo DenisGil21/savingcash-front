@@ -48,4 +48,9 @@ export class UsuarioService {
       catchError(error => of(false))
     );
   }
+
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+  }
 }
