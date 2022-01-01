@@ -4,20 +4,16 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 
-const routes:Routes = [
+const routes: Routes = [
   {
-    path:'',
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path:'**',
-        redirectTo:'dashboard'
-      }
-    ]
+    path: 'dashboard',
+    component: DashboardComponent
+  },
+  {
+    path: '',
+    redirectTo: 'dashboard',
   }
+
 ];
 
 @NgModule({

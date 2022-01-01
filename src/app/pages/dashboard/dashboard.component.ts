@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MovimientoService } from '../services/movimiento.service';
-import { MovimientoElement, MovimientoParameters } from '../interfaces/movimiento.interface';
+import { MovimientoService } from '../../services/movimiento.service';
+import { MovimientoElement, MovimientoParameters } from '../../interfaces/movimiento.interface';
 import Swal from 'sweetalert2';
 
 @Component({
