@@ -1,6 +1,6 @@
-<nav class="navbar navbar-purple text-white fixed-top">
+<nav class="navbar navbar-purple fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand">App - SavingCash</a>
+      <a class="navbar-brand" routerLink="dashboard">App - SavingCash</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <i class="fas fa-bars"></i>
       </button>
@@ -12,7 +12,10 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" [routerLink]="['/account', 'settings']">Perfil</a>
+              <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="dashboard">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="account/settings">Perfil</a>
             </li>
             <li class="nav-item">
               <a style="cursor: pointer;" class="nav-link" (click)="cerrarSesion()">Cerrar sesión</a>

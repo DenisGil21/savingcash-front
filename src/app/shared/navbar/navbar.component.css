@@ -1,5 +1,5 @@
 .navbar-purple{
-    background-color: #7414F5 !important;
+    background-color: #7414F5;
 }
 .navbar-purple, a{
     color: white;
@@ -14,6 +14,10 @@
 
 .offcanvas-body{
     font-size: 19px;
+}
+
+.nav-link.active{
+    color: black;
 }
 
 .nav-link:focus, .nav-link:hover {

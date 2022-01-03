@@ -1,0 +1,23 @@
+.card-person{
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+    background-color: #9099FE;
+    border-radius: 8px;
+}
+
+.card-body-person{
+    padding: 30px 30px 30px 30px;
+}
+
+.settings-container{
+    margin: 10%;
+}
+
+.img-profile{
+    width: 120px;
+}
+
+.img-container{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}

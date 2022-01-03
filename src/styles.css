@@ -3,3 +3,8 @@ body{
     background: #A6ADFF;
     font-family: 'Lobster', cursive;
 }
+
+.container{
+    margin: auto;
+    margin-top: 80px;
+}
